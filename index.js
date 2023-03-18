@@ -11,7 +11,7 @@ app.use(express.json());
 
 
 app.get("/",(req,res)=>{
-    return res.send("base api")
+    return res.send("base api 2")
 })
 
 // app.use("/user",userroute)
