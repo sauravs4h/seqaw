@@ -14,7 +14,7 @@ app.get("/",(req,res)=>{
     return res.send("base api 2")
 })
 
-app.use("/user",userroute)
+// app.use("/user",userroute)
 
 app.listen(8000,async()=>{
     // try{
