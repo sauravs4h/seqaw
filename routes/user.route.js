@@ -1,5 +1,6 @@
 const express=require("express")
 const bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 
 const userroute=express.Router();
 
@@ -44,7 +45,39 @@ userroute.post("/signup",async(req,res)=>{
 })
 
 
+userroute.post("/login",async(req,res)=>{
+    const payload=req.body;
+    const email=payload.email;
+    const password=payload.password;
 
+    const useravailable= await Users.findOne({where:{
+        email:email
+    }})
+
+    const hashpassword=useravailable?.password
+
+    if(useravailable){
+        bcrypt.compare(password, hashpassword, function(err, result) {
+            if(err){
+                return res.send({mag:"something went wrong"})
+            }
+            else{
+                if(result){
+                    var token = jwt.sign({ foo: 'bar' }, 'hush');
+                    return res.send({msg:"login successfull",token:token,status:"success"})
+
+                }else{
+                    return res.send({msg:"wrong cradintial"})
+                }
+            }
+        });
+
+   
+    }
+    else{
+        return res.send({msg:"user not available please login first"})
+    }
+})
 
 
 // await Users.create({

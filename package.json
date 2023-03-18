@@ -19,7 +19,9 @@
   "homepage": "https://github.com/sauravs4h/seqaw#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.2.0",
     "nodemon": "^2.0.21",
     "sequelize": "^6.29.3"
